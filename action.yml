@@ -1,0 +1,29 @@
+name: 'PageVitals Test Action'
+description: 'Run PageVitals tests in your build pipeline and get performance metrics'
+inputs:
+  api_key:
+    description: 'PageVitals API Key'
+    required: true
+  site_id:
+    description: 'Website ID to run tests for'
+    required: true
+  pages:
+    description: 'A list of page_ids and devices if you do not want to run tests for all pages'
+    required: false
+  performance_threshold:
+    description: 'Performance score threshold (0-100)'
+    required: false
+    default: '90'
+  fail_if_budgets_are_exceeded:
+    description: 'Fail the action if any budget is exceeded'
+    required: false
+    default: 'false'
+outputs:
+  test_results:
+    description: 'JSON string containing the test results'
+runs:
+  using: 'node20'
+  main: 'src/index.js'
+branding:
+  icon: 'zap'
+  color: 'blue'

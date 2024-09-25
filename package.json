@@ -1,0 +1,11 @@
+{
+    "name": "pagevitals-test-action",
+    "version": "1.0.0",
+    "description": "GitHub Action to run PageVitals tests",
+    "main": "index.js",
+    "dependencies": {
+        "@actions/core": "^1.10.0",
+        "@actions/github": "^5.1.1",
+        "@pagevitals/pagevitals-cli": "latest"
+    }
+}
