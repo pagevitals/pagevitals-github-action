@@ -47,18 +47,24 @@ async function run() {
             }
         };
 
-        console.log("Args: " + JSON.stringify(args));
-        console.log("Options: " + JSON.stringify(options));
-
         await exec.exec('npx', args, options);
 
-        if (error) {
+        // Filter out non-critical warnings
+        const warningPatterns = [
+            /npm warn exec/i
+        ];
+
+        // Check if any real errors exist in stderr
+        const isRealError = warningPatterns.every(pattern => !pattern.test(error));
+
+        if (isRealError && error) {
             core.setFailed(`Error running tests: ${error}`);
             return;
+        } else if (error) {
+            core.warning(`Non-critical warning: ${error}`);
         }
 
         const jsonResults = JSON.parse(output);
-        core.setOutput('test_results', JSON.stringify(jsonResults));
 
         // Fail step if the whole test series fails
         if (jsonResults.status === "failed") {
@@ -107,11 +113,16 @@ async function run() {
             return;
         }
 
-        console.log(`Tests completed successfully. Performance score: ${Math.round(avgPerformanceScore)}, 
+        //core.setOutput('test_results', JSON.stringify(jsonResults));
+
+        console.log(`Tests completed successfully. 
+            Failed tests: ${jsonResults.failed_tests},
+            Performance score: ${Math.round(avgPerformanceScore)}, 
             Accessibility score: ${Math.round(avgPerformanceScore)}, 
             Best practices score: ${Math.round(avgBestPracticesScore)}, 
             SEO score: ${Math.round(avgBestPracticesScore)}, 
-            Budgets exceeded: ${budgetsExceeded}`);
+            Budgets exceeded: ${budgetsExceeded}
+        `);
 
     } catch (error) {
         core.setFailed(error.message);
