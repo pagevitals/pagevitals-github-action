@@ -10,32 +10,36 @@ This GitHub Action allows you to trigger PageVitals tests for your website direc
 - `performance_threshold`: **Optional**. The minimum acceptable performance score (0-100). Default is 90.
 - `fail_if_budgets_are_exceeded`: **Optional**. Whether to fail the action if any budget is exceeded. Default is false.
 
-
 ## Outputs
 
 - `test_results`: A JSON string containing the full test results.
 
 ## Usage
 
+### Just run the tests
+
+If you just want to run all tests, and let the action succeed no matter what, simply use this:
+
 ```yaml
 steps:
-  - uses: actions/checkout@v2
+  - uses: actions/checkout@v3
 
   - name: Run PageVitals Test
     uses: pagevitals/pagevitals-github-action@v1
     with:
       api_key: ${{ secrets.PAGEVITALS_API_KEY }}
       website_id: k4hj3k5nm3
-      performance_threshold: 85
 ```
 
-### Specify pages and deivces
+Make sure to set your PageVitals API key as a secret in your GitHub repository settings.
+
+### Specify pages and devices
 
 If you want to specify which pages and devices you want tested, you can use the `pages` parameter:
 
 ```yaml
 steps:
-  - uses: actions/checkout@v2
+  - uses: actions/checkout@v3
 
   - name: Run PageVitals Test
     uses: pagevitals/pagevitals-github-action@v1
@@ -49,7 +53,47 @@ steps:
           device: mobile
 ```
 
-Make sure to set your PageVitals API key as a secret in your GitHub repository settings.
+### Commit message or version number
+
+You can add a description to the test series which can be seen in PageVitals UI. Typically this could be the release tag, or the latest commit message. In this example, the release tag is used:
+
+```yaml
+steps:
+  - uses: actions/checkout@v3
+
+  - name: Run PageVitals Test
+    uses: pagevitals/pagevitals-github-action@v1
+    with:
+      api_key: ${{ secrets.PAGEVITALS_API_KEY }}
+      website_id: k4hj3k5nm3
+      description: ${{ github.event.release.tag_name }}
+```
+
+Other GitHub variables can be seen [here](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context)
+
+### Fail based on thresholds
+
+If you want the action to fail based on a number of thresholds such as max failed tests, exceeded budgets, or Lighthouse score thresholds, use this:
+
+```yaml
+steps:
+  - uses: actions/checkout@v3
+
+  - name: Run PageVitals Test
+    uses: pagevitals/pagevitals-github-action@v1
+    with:
+      api_key: ${{ secrets.PAGEVITALS_API_KEY }}
+      website_id: k4hj3k5nm3
+      max_failed_tests: 0
+      budgets_exceeded_threshold: 0
+      performance_threshold: 90
+      accessibility_threshold: 90
+      best_practices_threshold: 90
+      seo_threshold: 90
+```
+
+When using one or more of these thresholds, the action will fail if one or more of the thresholds are exceeded.
+
 
 ## License
 

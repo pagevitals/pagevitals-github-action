@@ -10,14 +10,27 @@ inputs:
   pages:
     description: 'A list of page_ids and devices if you do not want to run tests for all pages'
     required: false
+  description:
+    description: 'A description that can be shown in PageVitals. Usually a deployment version or commit message.'
+    required: false
+  max_failed_tests:
+    description: 'Maximum number of failed tests before this action fails. Defaults to no maximum.'
+    required: false
   performance_threshold:
-    description: 'Performance score threshold (0-100)'
+    description: 'Minimum average performance score threshold (0-100). Defaults to no threshold.'
     required: false
-    default: '90'
-  fail_if_budgets_are_exceeded:
-    description: 'Fail the action if any budget is exceeded'
+  accessibility_threshold:
+    description: 'Minimum average accessibility score threshold (0-100). Defaults to no threshold.'
     required: false
-    default: 'false'
+  best_practices_threshold:
+    description: 'Minimum average best practices score threshold (0-100). Defaults to no threshold.'
+    required: false
+  seo_threshold:
+    description: 'Minimum average SEO score threshold (0-100). Defaults to no threshold.'
+    required: false
+  budgets_exceeded_threshold:
+    description: 'Fail the action if the number of budgets exceeded surpasses this value. Defaults to no threshold.'
+    required: false
 outputs:
   test_results:
     description: 'JSON string containing the test results'
@@ -25,5 +38,5 @@ runs:
   using: 'node20'
   main: 'src/index.js'
 branding:
-  icon: 'zap'
-  color: 'blue'
+  icon: 'heart'
+  color: 'green'

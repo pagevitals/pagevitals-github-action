@@ -3,6 +3,19 @@
     "version": "1.0.0",
     "description": "GitHub Action to run PageVitals tests",
     "main": "index.js",
+    "keywords": [
+        "pagevitals",
+        "github action",
+        "web performance",
+        "lighthouse",
+        "performance testing"
+    ],
+    "author": "PageVitals ApS",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pagevitals/pagevitals-github-action.git"
+    },
     "dependencies": {
         "@actions/core": "^1.10.0",
         "@actions/github": "^5.1.1",
