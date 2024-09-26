@@ -7,8 +7,13 @@ This GitHub Action allows you to trigger PageVitals tests for your website direc
 - `api_key`: **Required**. Your PageVitals API Key (first you need to [obtain one](https://pagevitals.com/docs/rest-api/authentication/))
 - `website_id`: **Required**. The ID of the site you want to test.
 - `pages`: **Optional**. A list of pages/devices to be tested, if you don't want all pages to be tested.
-- `performance_threshold`: **Optional**. The minimum acceptable performance score (0-100). Default is 90.
-- `fail_if_budgets_are_exceeded`: **Optional**. Whether to fail the action if any budget is exceeded. Default is false.
+- `description`: **Optional**. Add a release tag or commit message from GitHub, to be shown in PageVitals UI.
+- `max_failed_tests`: **Optional**. Maximum number of failed tests before this action fails. Defaults to no maximum.
+- `performance_threshold`: **Optional**. Minimum average performance score threshold (0-100). Defaults to no threshold.
+- `accessibility_threshold`: **Optional**. Minimum average accessibility score threshold (0-100). Defaults to no threshold.
+- `best_practices_threshold`: **Optional**. Minimum average best practices score threshold (0-100). Defaults to no threshold.
+- `seo_threshold`: **Optional**. Minimum average SEO score threshold (0-100). Defaults to no threshold.
+- `budgets_exceeded_threshold`: **Optional**. Fail the action if the number of budgets exceeded surpasses this value. Defaults to no threshold.
 
 ## Outputs
 
