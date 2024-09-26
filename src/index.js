@@ -7,6 +7,9 @@ async function run() {
         const websiteId = getInput('website_id');
         const pages = getInput('pages');
         const description = getInput('description');
+
+        if (!apiKey) setFailed(`Missing argument: api_key`);
+        if (!websiteId) setFailed(`Missing argument: website_id`);
         
         const performanceThreshold = parseInt(getInput('performance_threshold'));
         const accessibilityThreshold = parseInt(getInput('accessibility_threshold'));
