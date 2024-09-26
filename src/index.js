@@ -47,6 +47,9 @@ async function run() {
             }
         };
 
+        console.log("Args: " + JSON.stringify(args));
+        console.log("Options: " + JSON.stringify(options));
+
         await _exec('npx', args, options);
 
         if (error) {
