@@ -107,13 +107,11 @@ async function run() {
         }
 
         // Check if any budget is exceeded
-        const budgetsExceeded = jsonResults.result.list.reduce((total, next) => total + next.seo_score, 0);
+        const budgetsExceeded = jsonResults.result.list.reduce((total, next) => total + next.budgets_exceeded, 0);
         if (!isNaN(budgetsExceededThreshold) && budgetsExceeded > budgetsExceededThreshold) {
             core.setFailed(`Exceeded budgets ${budgetsExceeded} is greater than the threshold of ${budgetsExceededThreshold}`);
             return;
         }
-
-        //core.setOutput('test_results', JSON.stringify(jsonResults));
 
         console.log(`Tests completed successfully. 
             Failed tests: ${jsonResults.failed_tests},
