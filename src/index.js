@@ -79,28 +79,28 @@ async function run() {
         }
 
         // Check if performance meets the threshold
-        const avgPerformanceScore = jsonResult.result.list.reduce((total, next) => total + next.performance_score, 0) / jsonResults.results.list.length;
+        const avgPerformanceScore = jsonResults.result.list.reduce((total, next) => total + next.performance_score, 0) / jsonResults.result.list.length;
         if (!isNaN(performanceThreshold) && avgPerformanceScore < performanceThreshold) {
             core.setFailed(`Average performance score ${avgPerformanceScore} is below the threshold of ${performanceThreshold}`);
             return;
         }
 
         // Check if accessibility meets the threshold
-        const avgAccessibilityScore = jsonResult.result.list.reduce((total, next) => total + next.accessibility_score, 0) / jsonResults.results.list.length;
+        const avgAccessibilityScore = jsonResults.result.list.reduce((total, next) => total + next.accessibility_score, 0) / jsonResults.result.list.length;
         if (!isNaN(accessibilityThreshold) && avgAccessibilityScore < accessibilityThreshold) {
             core.setFailed(`Average accessibility score ${avgAccessibilityScore} is below the threshold of ${accessibilityThreshold}`);
             return;
         }
 
         // Check if performance meets the threshold
-        const avgBestPracticesScore = jsonResults.result.list.reduce((total, next) => total + next.best_practices_score, 0) / jsonResults.results.list.length;
+        const avgBestPracticesScore = jsonResults.result.list.reduce((total, next) => total + next.best_practices_score, 0) / jsonResults.result.list.length;
         if (!isNaN(bestPracticesThreshold) && avgBestPracticesScore < bestPracticesThreshold) {
             core.setFailed(`Average best practices score ${avgBestPracticesScore} is below the threshold of ${bestPracticesThreshold}`);
             return;
         }
 
         // Check if performance meets the threshold
-        const avgSeoScore = jsonResults.result.list.reduce((total, next) => total + next.seo_score, 0) / jsonResults.results.list.length;
+        const avgSeoScore = jsonResults.result.list.reduce((total, next) => total + next.seo_score, 0) / jsonResults.result.list.length;
         if (!isNaN(seoThreshold) && avgSeoScore < seoThreshold) {
             core.setFailed(`Average SEO score ${avgSeoScore} is below the threshold of ${seoThreshold}`);
             return;
