@@ -4,7 +4,7 @@ inputs:
   api_key:
     description: 'PageVitals API Key'
     required: true
-  site_id:
+  website_id:
     description: 'Website ID to run tests for'
     required: true
   pages:
