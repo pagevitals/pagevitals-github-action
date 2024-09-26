@@ -15,11 +15,8 @@ async function run() {
         const budgetsExceededThreshold = parseInt(getInput('budgets_exceeded_threshold'));
         const maxFailedTests =  parseInt(getInput('max_failed_tests'));
 
-        // Set the API token
-        await _exec('npx', ['@pagevitals/pagevitals-cli', 'token', apiKey]);
-
         // Prepare the command arguments
-        let args = ['@pagevitals/pagevitals-cli', 'run-tests', '--website', websiteId, '--output', 'json', '--initiator', 'GitHub'];
+        let args = ['@pagevitals/pagevitals-cli', 'run-tests', '--token', apiKey, '--website', websiteId, '--output', 'json', '--initiator', 'GitHub'];
 
         if (description) {
             args.push("--description", description);
