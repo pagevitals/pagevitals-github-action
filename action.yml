@@ -35,12 +35,8 @@ outputs:
   test_results:
     description: 'JSON string containing the test results'
 runs:
-  using: 'composite'
-  steps:
-    - run: npm install
-      shell: bash
-    - run: node ${{ github.action_path }}/src/index.js
-      shell: bash
+    using: 'node20'
+    main: 'src/index.js'
 branding:
   icon: 'heart'
   color: 'green'

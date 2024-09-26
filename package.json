@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "GitHub Action to run PageVitals tests",
     "main": "index.js",
-    "type": "module",
     "keywords": [
         "pagevitals",
         "github action",
