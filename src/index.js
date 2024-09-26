@@ -1,5 +1,5 @@
-import { getInput, setFailed, setOutput } from '@actions/core';
 import { exec as _exec } from '@actions/exec';
+import { getInput, setFailed, setOutput } from '@actions/core';
 
 async function run() {
     try {
