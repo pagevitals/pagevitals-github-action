@@ -18,6 +18,8 @@ Before using the CLI, you need to set your API token. You can do this by running
 pagevitals token <your_api_token>
 ```
 
+Note that you can also use the parameter `--token` directly in your requests if that suits your workflow better.
+
 ### Listing Websites
 
 To list all websites associated with your account and their IDs:
